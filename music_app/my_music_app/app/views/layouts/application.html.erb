@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Music App</title>
+    <header><title>My Music App</title></header>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="general">
     <nav class="main-nav">
-    <div>
+    <div align="right">
     <% if current_user.nil? %>
-      <a href="<%= new_session_url %>">Sign in</a>
-      <a href="<%= new_user_url %>">Sign up</a>
+      <a href="<%= new_session_url %>">Sign In</a>
+      <a href="<%= new_user_url %>">Sign Up</a>
     <% else %>
-      <%= current_user.username %>
+      <%= current_user.email %>
       <form action="<%= session_url %>" method="post">
         <input
           type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Logout">
+        <input type="submit" value="Sign Out">
       </form>
     <% end %>
-    <h1><a href="<%= users_url %>"> My Music App </a></h1>
     </div>
+    <div align="left" <h1><a href="<%= users_url %>"> My Music App </a></h1></div>
+
     </nav>
     <main>
     <%= yield %>

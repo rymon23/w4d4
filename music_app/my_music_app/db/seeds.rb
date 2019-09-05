@@ -6,8 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Band.destroy_all
 
 TEST_USER_COUNT = 10
 (0..TEST_USER_COUNT).each do |i|
-  User.create("testuser#{i}.gmail.com")
+  User.create(email: "usertest#{i}.tmail.com", password: "password")
+end
+
+TEST_BAND_COUNT = 10
+TEST_BAND_NAME_SET = ["red", "blue", "black", "angry", "pretty", "haters", "goo", "bad", "love", "crazy", "88", "99", "69", "ers", "zeneth", "blah", "meh", "lol", "pretentious", "ugly", "with the face","bro", "masters"]
+
+(0..TEST_BAND_COUNT).each do |i|
+  band_name = ""
+  rand(3...4).times {|t| band_name += TEST_BAND_NAME_SET.sample }
+  band_name[0] = band_name[0].upcase
+  Band.create(name: band_name)
 end

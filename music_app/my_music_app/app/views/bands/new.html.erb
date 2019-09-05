@@ -1,0 +1,25 @@
+<section class="page">
+  <div class="centered-box">
+    <center>
+    <h1 class="sign_in_on">Add a new band</h1>
+
+    <%= render 'shared/errors' %>
+
+    <form action="<%= bands_url %>" method="post">
+      <input
+        type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+
+      <label for="band_name" class="entry_text">Name:</label>
+      <input type="text"
+        name="band[name]"
+        id="band_name"
+        value="<%= @band.name %>">
+      <br>
+      <br>
+      <input type="submit" value="Add">
+    </form>
+    </center>
+  </div>
+</section>

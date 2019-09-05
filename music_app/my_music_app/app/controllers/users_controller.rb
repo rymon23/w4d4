@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
   def show
-    @user = find(params[:id])
-    render :show
+    @user = User.find(params[:id])
+    if @user 
+      render :show
+    else
+      render :new
+    end
   end
 
   def new
@@ -14,9 +18,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login_user!(@user)
-      redirect_to :show
+      redirect_to user_url(@user)
     else
-      flash.now[:errors] = user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
+      # debugger
       render :new
     end
   end
